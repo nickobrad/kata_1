@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!--Datatable plugin CSS file -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+  
+    <!--jQuery library file -->
+    <script type="text/javascript" src=
+        "https://code.jquery.com/jquery-3.5.1.js">
+    </script>
+  
+    <!--Datatable plugin JS library file -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <p>
+            The number of males in the data set are: {{ male_no }}
+        </p>
+        <hr>
+        <p>
+            The number of females in the data set are: {{ female_no }}
+        </p>
+        <hr>
+        <div class="table-responsive">
+            <table id = 'tableID' class = 'display' style = 'width:100%'>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                        <th>City</th>
+                        <th>Job Title</th>
+                        <th>Race</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in formatdata %}
+                        <tr>
+                            <th scoppe = 'row'>{{ data['id'] + pagination.skip }}</th>
+                            <td>{{ data['first_name'] }}</td>
+                            <td>{{ data['last_name'] }}</td>
+                            <td>{{ data['email'] }}</td>
+                            <td>{{ data['gender'] }}</td>
+                            <td>{{ data['city'] }}</td>
+                            <td>{{ data['job_title'] }}</td>
+                            <td>{{ data['race'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $('#tableID').DataTable({
+                    
+                })
+            })
+            
+        </script>
+    </div>
+</body>
+</html>
